@@ -1,0 +1,108 @@
+extends base
+include mixins/otherVideos
+
+block content 
+    div.biggestContainer
+        div.mainContainer
+            if video.fileUrl
+                div#videoContainer(data-id=video._id)
+                    if isHeroku 
+                        video(src=video.fileUrl)#video
+                    else
+                        video(src="/"+video.fileUrl)#video
+                    div#videoControls.videoControls
+                        div.videoControls__play
+                            span#play.videoControls__playBtn
+                                i.fas.fa-play
+                            div.videoControls__time
+                                span#currentTime 00:00
+                                span  / 
+                                span#totalTime 00:00
+                        input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
+                        div.videoControls__volume
+                            input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
+                            span#mute
+                                i.fas.fa-volume-up
+                        div.videoControls__fullScreen
+                            span#fullScreen
+                                i.fas.fa-expand
+            else 
+                div#videoContainer(data-id=video._id).imageContainer
+                    if isHeroku 
+                        img(src=video.thumbUrl)#video
+                    else
+                        img(src="/"+video.thumbUrl)#video
+            div.videoInfoBox    
+                div.videoInfo
+                    div.videoInfo__data
+                        div.videoInfo__data-hash
+                            each hashtag in video.hashtags
+                                span #{hashtag } 
+                        h1=video.title
+                        div.videoInfo__data-meta
+                            h6 #{video.meta.views} views 
+                            span •
+                            small=video.createdAt
+                    div.videoInfo__anch
+                        div.videoInfo__anchBox
+                            if String(video.owner._id) === String(loggedInUser._id)
+                                if video.fileUrl
+                                    a(href=`${video.id}/edit`) Edit Video 
+                                    a(href=`${video.id}/delete`) Delete Video 
+                                else 
+                                    a(href=`${video.id}/edit`) Edit Image 
+                                    a(href=`${video.id}/delete`) Delete Image 
+                div.videoInfo2
+                    div.videoInfo2__owner
+                        if !video.owner.avatarUrl
+                            span.small__imoticon 😀
+                        else 
+                            if isHeroku
+                                img(src=`${video.owner.avatarUrl}`).small__avatar
+                            else 
+                                img(src="/"+`${video.owner.avatarUrl}`).small__avatar
+                        div.videoInfo2__owner-link
+                            small Uploaded by 
+                            a(href=`/users/${video.owner._id}`)=video.owner.name
+                    div.videoInfo2__para=video.description 
+                        
+            
+
+            div.video__comments 
+                h1 #{video.comments.length} Comments
+                ul 
+                    each comment in comments.reverse()
+                        li.video__comment(data-id=comment.id)
+                            div.video__comment-icon
+                                if !comment.owner.avatarUrl
+                                    span.smaller__imoticon 😀
+                                else 
+                                    if isHeroku
+                                        img(src=`${comment.owner.avatarUrl}`).smaller__avatar
+                                    else 
+                                        img(src="/"+`${comment.owner.avatarUrl}`).smaller__avatar
+                            div.video__comment-box
+                                div.ownerName=comment.owner.name
+                                div.video__comment-text
+                                    span#comment-text  #{comment.text}
+                                    if String(comment.owner._id) === String(loggedInUser._id)
+                                        i.far.fa-trash-alt#delete-comment
+                if loggedIn
+                    div.video__add-comments 
+                        form.video__comment-form#commentForm 
+                            textarea(cols="50", rows="5", placeholder="Write a nice comment...")
+                            button Add comment
+        div.otherVideos
+            each one in videos
+                +otherVideos(one)
+            else 
+                span.empty__message No videos found
+
+    
+
+block scripts 
+    script(src="/static/js/watch.js")
+    if video.fileUrl
+        script(src="/static/js/videoPlayer.js")
+    if loggedIn    
+        script(src="/static/js/commentSection.js")

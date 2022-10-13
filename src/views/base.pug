@@ -1,0 +1,25 @@
+include mixins/message
+
+doctype html
+html(lang="ko")
+    head 
+        title #{pageTitle} | #{siteName}
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
+        link(rel="stylesheet", href="/static/css/styles.css")
+        link(rel="fontawesom", href="https://use.fontawesome.com/releases/v5.2.0/js/all.js")
+        link(rel="shortcut icon" href="https://api.freelogodesign.org/files/f3b8421634d9494cb7f922dbb9b99d2a/thumb/logo_200x200.png?v=637667888670000000" type="image/x-icon")
+    body 
+        if messages.error 
+            +message("error", messages.error)
+        if messages.info 
+            +message("info", messages.info)
+        if messages.success 
+            +message("success", messages.success)
+        include partials/header
+        main
+            block content
+        include partials/footer
+    script(src="/static/js/main.js")
+    
+
+    block scripts

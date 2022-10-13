@@ -1,0 +1,12 @@
+mixin otherVideos(video)
+    a(href=`/videos/${video.id}`).otherVideo-mixin
+        div.otherVideo-mixin__thumb(style=`background-size:cover;background-position:center;`)
+            if isHeroku 
+                img(src=video.thumbUrl, alt="thumbnail").otherVideo-mixin__thumb
+            else
+                img(src="/"+video.thumbUrl, alt="thumbnail").otherVideo-mixin__thumb
+        div.otherVideo-mixin__data
+            span.otherVideo-mixin__title=video.title
+            div.otherVideo-mixin__meta
+                span #{video.owner.name} • 
+                span #{video.meta.views} 회
