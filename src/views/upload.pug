@@ -7,15 +7,15 @@ block content
             //- button#actionBtn.social__btn Start Recording for 3s
         if errorMessage
             span=errorMessage
-        form(method="POST", enctype="multipart/form-data")
+        form(method="POST", enctype="multipart/form-data").upload__container-box
             //- label(for="video") Video File
             //- input(type="file", accept="video/*", id="video", name="video")
             label(for="thumb") Image File
             input(type="file", accept="image/*", required, id="thumb", name="thumb")
             input(placeholder="Title", required, type="text", name="title", maxlength=80)
-            input(placeholder="Description", type="text", name="description")
-            input(placeholder="Hashtags, separated by comma.", type="text", name="hashtags")
-            input(type="submit", value="Upload Video")
+            textarea(placeholder="Description", type="text", name="description").upload__container-description
+            //- input(placeholder="Hashtags, separated by comma.", type="text", name="hashtags")
+            input(type="submit", value="Upload")
             
 block scripts 
     script(src="/static/js/recorder.js")

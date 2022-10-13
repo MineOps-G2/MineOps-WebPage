@@ -1,4 +1,6 @@
 .video-grid {
+  // background: #D8E9A8;
+  padding: 10px 10px 10px 10px;
   margin-top: 70px;
   display: grid;
   gap: 20px;
@@ -8,6 +10,7 @@
   width: 100%;
 }
 .video-mixin {
+  // background: #4E9F3D;
   width: 100%;
   display: flex;
   .video-mixin__thumb {

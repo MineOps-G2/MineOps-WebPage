@@ -1,13 +1,22 @@
 .upload__container {
   width: 100%;
-  .upload__video {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    video {
-      max-width: 100%;
-      margin-bottom: 10px;
-    }
+  .upload__container-box{
+    max-width: 100%;
+    margin: 0 0 0 0;
+    justify-content: center;
+    padding: 50px 30px 50px 80px;
   }
+  .upload__container-description {
+    height: 150px;
+  }
+  // .upload__video {
+  //   margin-bottom: 20px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   // video {
+  //   //   max-width: 100%;
+  //   //   margin-bottom: 10px;
+  //   // }
+  // }
 }

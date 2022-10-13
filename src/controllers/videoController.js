@@ -49,7 +49,7 @@ export const postEdit = async (req, res) => {
   const {
     user: { _id },
   } = req.session;
-  const { title, description, hashtags } = req.body;
+  const { title, description } = req.body;
   const video = await Video.findById(id); //Boolean값 반환
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
@@ -61,7 +61,7 @@ export const postEdit = async (req, res) => {
   await Video.findByIdAndUpdate(id, {
     title,
     description,
-    hashtags: Video.formatHashtags(hashtags),
+    // hashtags: Video.formatHashtags(hashtags),
   });
   req.flash("success", "Changes saved.");
   return res.redirect(`/videos/${id}`);
@@ -78,7 +78,7 @@ export const postUpload = async (req, res) => {
     user: { _id },
   } = req.session;
   const { video, thumb } = req.files;
-  const { title, description, hashtags } = req.body;
+  const { title, description } = req.body;
   const isHeroku = process.env.NODE_ENV === "production";
   try {
     const newVideo = await Video.create({
@@ -87,7 +87,7 @@ export const postUpload = async (req, res) => {
       fileUrl: video ? (isHeroku ? video[0].location : video[0].path) : "",
       thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
       owner: _id,
-      hashtags: Video.formatHashtags(hashtags),
+      // hashtags: Video.formatHashtags(hashtags),
     });
     const user = await User.findById(_id);
     user.videos.push(newVideo._id);
