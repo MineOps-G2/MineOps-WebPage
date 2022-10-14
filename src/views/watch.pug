@@ -4,6 +4,27 @@ include mixins/otherVideos
 block content 
     div.biggestContainer
         div.mainContainer
+            div.videoInfoBox    
+                div.videoInfo
+                    div.videoInfo__data
+                        div.videoInfo__data-hash
+                            each hashtag in video.hashtags
+                                span #{hashtag } 
+                        h1=video.title
+                        div.videoInfo__data-meta
+                            h6 #{video.meta.views} views 
+                            span •
+                            small=video.createdAt
+                    div.videoInfo__anch
+                        div.videoInfo__anchBox
+                            if String(video.owner._id) === String(loggedInUser._id)
+                                if video.fileUrl
+                                    a(href=`${video.id}/edit`) Edit Video 
+                                    a(href=`${video.id}/delete`) Delete Video 
+                                else 
+                                    a(href=`${video.id}/edit`) Edit Post
+                                    a(href=`${video.id}/delete`) Delete Post 
+                            
             if video.fileUrl
                 div#videoContainer(data-id=video._id)
                     if isHeroku 
@@ -32,26 +53,8 @@ block content
                         img(src=video.thumbUrl)#video
                     else
                         img(src="/"+video.thumbUrl)#video
-            div.videoInfoBox    
-                div.videoInfo
-                    div.videoInfo__data
-                        div.videoInfo__data-hash
-                            each hashtag in video.hashtags
-                                span #{hashtag } 
-                        h1=video.title
-                        div.videoInfo__data-meta
-                            h6 #{video.meta.views} views 
-                            span •
-                            small=video.createdAt
-                    div.videoInfo__anch
-                        div.videoInfo__anchBox
-                            if String(video.owner._id) === String(loggedInUser._id)
-                                if video.fileUrl
-                                    a(href=`${video.id}/edit`) Edit Video 
-                                    a(href=`${video.id}/delete`) Delete Video 
-                                else 
-                                    a(href=`${video.id}/edit`) Edit Image 
-                                    a(href=`${video.id}/delete`) Delete Image 
+
+                div.videoInfo2__para=video.description 
                 div.videoInfo2
                     div.videoInfo2__owner
                         if !video.owner.avatarUrl
@@ -64,7 +67,7 @@ block content
                         div.videoInfo2__owner-link
                             small Uploaded by 
                             a(href=`/users/${video.owner._id}`)=video.owner.name
-                    div.videoInfo2__para=video.description 
+                
                         
             
 
@@ -90,7 +93,7 @@ block content
                 if loggedIn
                     div.video__add-comments 
                         form.video__comment-form#commentForm 
-                            textarea(cols="50", rows="5", placeholder="Write a nice comment...")
+                            textarea(cols="50", rows="5", placeholder="Write a comment")
                             button Add comment
         div.otherVideos
             each one in videos

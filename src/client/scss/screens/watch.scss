@@ -4,6 +4,7 @@
     border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
     display: flex;
     margin: 0px auto;
+    margin-bottom: 50px;
     padding: 20px 0px;
     .videoInfo__data {
       h1 {
@@ -45,34 +46,40 @@
       }
     }
   }
-  .videoInfo2 {
-    padding: 20px 0px;
-    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
-    .videoInfo2__owner {
+}
+
+.videoInfo2 {
+  margin: 0 50px;
+  padding: 20px 0px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+  border-top: 0.5px solid rgba(255, 255, 255, 0.2);
+
+  .videoInfo2__owner {
+    display: flex;
+    align-items: center;
+    .videoInfo2__owner-link {
+      padding: 20px;
       display: flex;
-      align-items: center;
-      .videoInfo2__owner-link {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        small {
-          font-size: 13px;
-        }
-        a {
-          color: #3ea6ff;
-          margin-top: 5px;
-        }
+      flex-direction: column;
+      small {
+        font-size: 13px;
+      }
+      a {
+        color: #3ea6ff;
+        margin-top: 5px;
       }
     }
-    .videoInfo2__para {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: normal;
-      max-width: 70%;
-      padding: 20px;
-      margin-left: 70px;
-    }
   }
+}
+
+.videoInfo2__para {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 70%;
+  padding: 40px 0;
+  margin: 0 50px;
+  width: 80%;
 }
 
 .video__comments {
@@ -163,6 +170,37 @@
 
 .imageContainer {
   img {
-    width: 92%;
+    width: 90%;
+  }
+}
+
+.otherVideo {
+  margin-top: 50px;
+}
+
+.otherVideo-mixin {
+  display: flex;
+  .otherVideo-mixin__thumb {
+    width: 90%;
+    height: 94px;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+  .otherVideo-mixin__data {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2px;
+    .otherVideo-mixin__title {
+      color: white;
+      font-weight: 600;
+    }
+    .otherVideo-mixin__meta {
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 5px;
+      font-size: 12px;
+    }
   }
 }
