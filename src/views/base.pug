@@ -3,11 +3,12 @@ include mixins/message
 doctype html
 html(lang="ko")
     head 
-        title #{pageTitle} | #{siteName}
+        title #{pageTitle} | MineOps
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet", href="/static/css/styles.css")
         link(rel="fontawesom", href="https://use.fontawesome.com/releases/v5.2.0/js/all.js")
-        link(rel="shortcut icon" href="https://api.freelogodesign.org/files/f3b8421634d9494cb7f922dbb9b99d2a/thumb/logo_200x200.png?v=637667888670000000" type="image/x-icon")
+        //- link(rel="shortcut icon" href="https://api.freelogodesign.org/files/f3b8421634d9494cb7f922dbb9b99d2a/thumb/logo_200x200.png?v=637667888670000000" type="image/x-icon")
+        link(rel="shortcut icon" href="https://user-images.githubusercontent.com/77392219/195795944-32e7969d-4142-4a9e-865b-d2ef2d3784c4.jpg" type="image/x-icon")
     body 
         if messages.error 
             +message("error", messages.error)
