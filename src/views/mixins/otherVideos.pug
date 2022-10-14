@@ -1,10 +1,13 @@
 mixin otherVideos(video)
     a(href=`/videos/${video.id}`).otherVideo-mixin
         div.otherVideo-mixin__thumb(style=`background-size:cover;background-position:center;`)
-            if isHeroku 
-                img(src=video.thumbUrl, alt="thumbnail").otherVideo-mixin__thumb
-            else
-                img(src="/"+video.thumbUrl, alt="thumbnail").otherVideo-mixin__thumb
+            if video.thumbUrl
+                if isHeroku 
+                    img(src=video.thumbUrl, alt="thumbnail").otherVideo-mixin__thumb
+                else
+                    img(src="/"+video.thumbUrl, alt="thumbnail").otherVideo-mixin__thumb
+            else  
+                img(src="https://user-images.githubusercontent.com/77392219/195791854-b52e80a4-67f3-4334-9024-adde7ac42d20.jpg", alt=thumbnail).otherVideo-mixin__thumb
         div.otherVideo-mixin__data
             span.otherVideo-mixin__title=video.title
             div.otherVideo-mixin__meta

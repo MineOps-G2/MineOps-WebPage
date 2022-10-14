@@ -49,10 +49,11 @@ block content
                                 i.fas.fa-expand
             else 
                 div#videoContainer(data-id=video._id).imageContainer
-                    if isHeroku 
-                        img(src=video.thumbUrl)#video
-                    else
-                        img(src="/"+video.thumbUrl)#video
+                    if video.thumbUrl
+                        if isHeroku 
+                            img(src=video.thumbUrl)#video
+                        else
+                            img(src="/"+video.thumbUrl)#video
                 
                 textarea(rows=30).videoInfo2__para=video.description 
                 div.videoInfo2
