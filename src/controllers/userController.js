@@ -97,8 +97,6 @@ export const finishGithubLogin = async (req, res) => {
       },
     })
   ).json();
-  res.send(JSON.stringify(json));
-  return res.redirect("/");
   if ("access_token" in tokenRequest) {
     //GET으로 access_token을 보내줘야 함
     const { access_token } = tokenRequest;

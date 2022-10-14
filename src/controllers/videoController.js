@@ -16,7 +16,7 @@ export const watch = async (req, res) => {
   const video = await Video.findById(id).populate("owner").populate("comments");
   const comments = await Comment.find({ video: id }).populate("owner");
   if (!video) {
-    return res.status(404).render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Post not found." });
   }
   video.meta.views += 1;
   await video.save();
@@ -52,10 +52,10 @@ export const postEdit = async (req, res) => {
   const { title, description } = req.body;
   const video = await Video.findById(id); //Boolean값 반환
   if (!video) {
-    return res.status(404).render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Post not found." });
   }
   if (String(video.owner) !== String(_id)) {
-    req.flash("error", "You are not the owner of the video.");
+    req.flash("error", "You are not the owner of the post.");
     return res.status(403).redirect("/");
   }
   await Video.findByIdAndUpdate(id, {
@@ -78,7 +78,6 @@ export const postUpload = async (req, res) => {
     user: { _id },
   } = req.session;
   const { video, thumb } = req.files;
-  console.log(thumb);
   const { title, description } = req.body;
   const isHeroku = process.env.NODE_ENV === "production";
   try {
@@ -93,12 +92,12 @@ export const postUpload = async (req, res) => {
     const user = await User.findById(_id);
     user.videos.push(newVideo._id);
     user.save();
-    req.flash("success", "video uploaded");
+    req.flash("success", "Posting succeed");
     return res.redirect("/");
   } catch (error) {
     console.log(error);
     return res.status(400).render("upload", {
-      pageTitle: "Upload Video",
+      pageTitle: "Posting",
       errorMessage: error_message,
     });
   }
@@ -111,14 +110,14 @@ export const deleteVideo = async (req, res) => {
   } = req.session;
   const video = await Video.findById(id);
   if (!video) {
-    return res.status(404).render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Post not found." });
   }
   if (String(video.owner) !== String(_id)) {
     req.flash("error", "not authorized");
     return res.status(403).redirect("/");
   }
   await Video.findByIdAndDelete(id);
-  req.flash("success", "video deleted");
+  req.flash("success", "post deleted");
   return res.redirect("/");
 };
 
