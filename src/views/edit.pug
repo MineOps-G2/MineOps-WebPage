@@ -1,9 +1,10 @@
 extends base
 
-block content 
-    h4 Update Video
-    form(method="POST")
+block content
+    h4 Edit Post
+    <br>
+    form(method="POST").upload__container-box
         input(name="title", placeholder="Video Title", value=video.title, required)
-        input(name="description", placeholder="Description",type="text", value=video.description)
-        input(name="hashtags", placeholder="Hashtags, separated by comma.", type="text", value=video.hashtags.join())
+        textarea(name="description", placeholder="Description", type="text", value=video.description).upload__container-description
+        //- input(name="hashtags", placeholder="Hashtags, separated by comma.", type="text", value=video.hashtags.join())
         input(value="Save", type="submit")

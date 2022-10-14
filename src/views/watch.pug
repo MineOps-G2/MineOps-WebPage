@@ -54,7 +54,7 @@ block content
                     else
                         img(src="/"+video.thumbUrl)#video
                 
-                textarea(onkeydown="resize(this)" onkeyup="resize(this)").videoInfo2__para=video.description 
+                textarea(rows=30).videoInfo2__para=video.description 
                 div.videoInfo2
                     div.videoInfo2__owner
                         if !video.owner.avatarUrl

@@ -4,11 +4,26 @@ const sidebar = document.querySelector(".otherVideos");
 const mainContentHeight = mainContent.offsetHeight;
 const sidebarHeight = sidebar.offsetHeight;
 
+console.log(textEle);
 if (mainContentHeight !== sidebarHeight) {
   sidebar.style.height = mainContentHeight + "px";
 }
 
-export function resize(obj) {
-  obj.style.height = "1px";
-  obj.style.height = 12 + obj.scrollHeight + "px";
-}
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    autosize(document.querySelectorAll("textarea"));
+  },
+  false
+);
+
+// function adjustHeight() {
+//   const textEle = document.querySelectorAll("textarea");
+//   textEle[0].style.height = "auto";
+//   let textEleHeight = textEle.prop("scrollHeight");
+//   textEle.css("height", textEleHeight);
+// }
+
+// adjustHeight();
+
+// textEle.addEventListener("keyup", adjustHeight);
