@@ -80,6 +80,7 @@ export const finishGithubLogin = async (req, res) => {
     client_secret: process.env.GH_SECRET,
     code: req.query.code,
   };
+  console.log(config);
   //url로 집어넣어야 함
   const params = new URLSearchParams(config).toString();
   const finalUrl = `${baseUrl}?${params}`;
@@ -96,6 +97,8 @@ export const finishGithubLogin = async (req, res) => {
       },
     })
   ).json();
+  res.send(JSON.stringify(json));
+  return res.redirect("/");
   if ("access_token" in tokenRequest) {
     //GET으로 access_token을 보내줘야 함
     const { access_token } = tokenRequest;
