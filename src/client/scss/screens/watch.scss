@@ -73,13 +73,18 @@
 }
 
 .videoInfo2__para {
+  background-color: inherit;
   overflow: hidden;
+  resize: auto;
   text-overflow: ellipsis;
   white-space: normal;
-  max-width: 70%;
-  padding: 40px 0;
+  max-width: 88%;
+  padding: 10px;
   margin: 0 50px;
-  width: 80%;
+  margin-top: 30px;
+  width: 100%;
+  min-height: 150px;
+  border: none;
 }
 
 .video__comments {
