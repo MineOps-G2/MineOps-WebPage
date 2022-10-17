@@ -18,7 +18,7 @@ header
                 li 
                     a(href="/"+`users/${loggedInUser._id}`)
                         if !loggedInUser.avatarUrl
-                            img.header__avatar(src="https://user-images.githubusercontent.com/77392219/195795944-32e7969d-4142-4a9e-865b-d2ef2d3784c4.jpg", crossorigin="anonymous")
+                            img.header__avatar(src="https://user-images.githubusercontent.com/77392219/195795944-32e7969d-4142-4a9e-865b-d2ef2d3784c4.jpg", crossorigin)
                         else 
                             if isHeroku
                                 img.header__avatar(src=loggedInUser.avatarUrl)
