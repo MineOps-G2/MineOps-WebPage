@@ -3,24 +3,23 @@ import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 
 const s3 = new aws.S3({
-  credentials: {
-    accessKeyId: process.env.AWS_ID,
-    secretAccessKey: process.env.AWS_SECRET,
-  },
+  region: "ap-northeast-2",
+  accessKeyId: process.env.AWS_ID,
+  secretAccessKey: process.env.AWS_SECRET,
 });
 
 const isHeroku = process.env.NODE_ENV === "production";
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "mineops-bucket/images",
-  acl: "public-read",
+  bucket: "mineops-bucket3/images",
+  // acl: "public-read",
 });
 
 const s3VideoUploader = multerS3({
   s3: s3,
-  bucket: "mineops-bucket/videos",
-  acl: "public-read",
+  bucket: "mineops-bucket3/videos",
+  // acl: "public-read",
 });
 
 export const localsMiddleware = (req, res, next) => {

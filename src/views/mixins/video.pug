@@ -1,16 +1,13 @@
 mixin video(video)
     a(href=`/videos/${video.id}`).video-mixin
         //- div(style=`background-size:cover;background-position:center;`)
-        if isHeroku 
-            if video.thumbUrl
+        if video.thumbUrl == ''
+            img(src="https://user-images.githubusercontent.com/77392219/195791854-b52e80a4-67f3-4334-9024-adde7ac42d20.jpg", alt=thumbnail).video-mixin__thumb
+        else 
+            if isHeroku 
                 img(src=video.thumbUrl, alt="thumbnail").video-mixin__thumb
             else 
-                img(src="https://user-images.githubusercontent.com/77392219/195791854-b52e80a4-67f3-4334-9024-adde7ac42d20.jpg", alt=thumbnail).video-mixin__thumb
-        else
-            if video.thumbUrl
-                img(src="/" + video.thumbUrl, alt="thumbnail").video-mixin__thumb
-            else 
-                img(src="https://user-images.githubusercontent.com/77392219/195791854-b52e80a4-67f3-4334-9024-adde7ac42d20.jpg", alt=thumbnail).video-mixin__thumb
+                img(src="/" + video.thumbUrl, alt="thumbnail").video-mixin__thumb    
         div.video-mixin__data
             span.video-mixin__title=video.title
             div.video-mixin__meta
