@@ -4,7 +4,6 @@ const sidebar = document.querySelector(".otherVideos");
 const mainContentHeight = mainContent.offsetHeight;
 const sidebarHeight = sidebar.offsetHeight;
 
-console.log(textEle);
 if (mainContentHeight !== sidebarHeight) {
   sidebar.style.height = mainContentHeight + "px";
 }
