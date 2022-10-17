@@ -59,7 +59,7 @@ block content
                 div.videoInfo2
                     div.videoInfo2__owner
                         if !video.owner.avatarUrl
-                            span.small__imoticon 😀
+                            img.small__avatar(src="https://user-images.githubusercontent.com/77392219/195795944-32e7969d-4142-4a9e-865b-d2ef2d3784c4.jpg")
                         else 
                             if isHeroku
                                 img(src=`${video.owner.avatarUrl}`).small__avatar
