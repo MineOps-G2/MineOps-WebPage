@@ -35,10 +35,10 @@ export const getEdit = async (req, res) => {
   } = req.session;
   const video = await Video.findById(id);
   if (!video) {
-    return res.status(404).render("404", { pageTitle: "Video not found." });
+    return res.status(404).render("404", { pageTitle: "Post not found." });
   }
   if (String(video.owner) !== String(_id)) {
-    req.flash("error", "You are not the owner of the video");
+    req.flash("error", "You are not the owner of the post");
     return res.status(403).redirect("/");
   }
   return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
@@ -70,7 +70,7 @@ export const postEdit = async (req, res) => {
 export const getUpload = (req, res) => {
   // res.header("Cross-Origin-Embedder-Policy", "require-corp");
   // res.header("Cross-Origin-Opener-Policy", "same-origin");
-  return res.render("upload", { pageTitle: "Upload Video" });
+  return res.render("upload", { pageTitle: "Upload post" });
 };
 
 export const postUpload = async (req, res) => {
@@ -113,11 +113,11 @@ export const deleteVideo = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Post not found." });
   }
   if (String(video.owner) !== String(_id)) {
-    req.flash("error", "not authorized");
+    req.flash("error", "Not authorized");
     return res.status(403).redirect("/");
   }
   await Video.findByIdAndDelete(id);
-  req.flash("success", "post deleted");
+  req.flash("success", "Post deleted");
   return res.redirect("/");
 };
 

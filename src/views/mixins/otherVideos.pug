@@ -1,5 +1,5 @@
 mixin otherVideos(video)
-    a(href=`/videos/${video.id}`).otherVideo-mixin
+    a(href=`/posts/${video.id}`).otherVideo-mixin
         div.otherVideo-mixin__thumb(style=`background-size:cover;background-position:center;`)
             if video.thumbUrl
                 if isHeroku 
