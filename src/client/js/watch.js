@@ -15,14 +15,3 @@ document.addEventListener(
   },
   false
 );
-
-// function adjustHeight() {
-//   const textEle = document.querySelectorAll("textarea");
-//   textEle[0].style.height = "auto";
-//   let textEleHeight = textEle.prop("scrollHeight");
-//   textEle.css("height", textEleHeight);
-// }
-
-// adjustHeight();
-
-// textEle.addEventListener("keyup", adjustHeight);

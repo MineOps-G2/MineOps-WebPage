@@ -12,13 +12,13 @@ const isHeroku = process.env.NODE_ENV === "production";
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "mineops-bucket3/images",
+  bucket: "mineops-web-bucket/images",
   acl: "public-read",
 });
 
-const s3VideoUploader = multerS3({
+const s3PostUploader = multerS3({
   s3: s3,
-  bucket: "mineops-bucket3/videos",
+  bucket: "mineops-web-bucket/posts",
   acl: "public-read",
 });
 
