@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: web-community
-          image: 087600766519.dkr.ecr.ap-northeast-2.amazonaws.com/web:17 #test
+          image: chogudnws/mineops:latest #test
           ports:
             - containerPort: 7070
