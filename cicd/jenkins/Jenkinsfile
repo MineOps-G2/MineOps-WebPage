@@ -1,5 +1,5 @@
 // def buildNumber = currentBuild
-// test
+
 pipeline {
   agent {
     kubernetes {
