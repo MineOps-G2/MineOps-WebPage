@@ -55,13 +55,12 @@ spec:
     }
     stage('Update Manifestfile (deployment.yaml)') {
       steps {
-        git credentialsId: 'pk',
-                url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
-                branch: 'main'
-
-        sh "cd cicd/ArgoCD"
-        sh "sed -i 's/web:.*\$/web:${currentBuild.number}/g' deployment.yaml"
-        sh "git add deployment.yaml"
+        // git credentialsId: 'pk',
+        //         url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
+        //         branch: 'main'
+        
+        sh "sed -i 's/web:.*\$/web:${currentBuild.number}/g' ./cicd/ArgoCD/deployment.yaml"
+        sh "git add ./cicd/ArgoCD/deployment.yaml"
         sh "git commit -m 'Update version of web:${currentBuild.number} image'"
         sh "git remote add origin https://github.com/MineOps-G2/MineOps-WebPage.git"
         sh "git push -u origin main"
@@ -77,4 +76,3 @@ spec:
     }
     }
   }
-}
