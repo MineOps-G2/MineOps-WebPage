@@ -55,7 +55,7 @@ spec:
     }
     stage('Update Manifestfile (deployment.yaml)') {
       steps {
-        git credentialsId: '{Credential ID}',
+        git credentialsId: 'pk',
                 url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
                 branch: 'main'
 
