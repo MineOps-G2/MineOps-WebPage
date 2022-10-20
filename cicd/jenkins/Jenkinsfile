@@ -65,6 +65,7 @@ spec:
         // sh "git remote add origin https://github.com/MineOps-G2/MineOps-WebPage.git"
         // sh "git push -u origin main"
         sh "git remote -v"
+        sh "git branch -a"
       }
       post {
             failure {
