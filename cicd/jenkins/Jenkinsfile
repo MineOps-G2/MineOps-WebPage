@@ -1,0 +1,80 @@
+// def buildNumber = currentBuild
+
+pipeline {
+  agent {
+    kubernetes {
+      yaml """
+kind: Pod
+metatdata:
+  namespace: jenkins
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    env:
+    - name: DEST
+      value: "087600766519.dkr.ecr.ap-northeast-2.amazonaws.com/web:${currentBuild.number}"
+    imagePullPolicy: Always
+    command:
+    - /busybox/cat
+    tty: true
+    volumeMounts:
+      - name: docker-config
+        mountPath: /kaniko/.docker
+  volumes:
+    - name: docker-config
+      projected:
+        sources:
+        configMap:
+          name: docker-config
+"""
+    }
+  }
+  stages {
+    stage('Build and Push with Kaniko') {
+      steps {
+        container(name: 'kaniko', shell: '/busybox/sh') {
+          sh '''#!/busybox/sh
+            /kaniko/executor \\
+            --git branch=main \\
+            --context=git://github.com/MineOps-G2/MineOps-WebPage.git \\
+            --destination="${DEST}"
+          '''
+        }
+      }
+      post {
+            failure {
+                echo 'Build and Push Failure'
+                echo '${currentBuild.result}'
+            }
+            success {
+                echo 'Build and Push Success'
+                echo '${currentBuild.result}'
+            }
+      }
+    }
+    stage('Update Manifestfile (deployment.yaml)') {
+      steps {
+        git credentialsId: '{Credential ID}',
+                url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
+                branch: 'main'
+
+        sh "cd cicd/ArgoCD"
+        sh "sed -i 's/web:.*\$/web:${currentBuild.number}/g' deployment.yaml"
+        sh "git add deployment.yaml"
+        sh "git commit -m 'Update version of web:${currentBuild.number} image'"
+        sh "git remote add origin https://github.com/MineOps-G2/MineOps-WebPage.git"
+        sh "git push -u origin main"
+      }
+      post {
+            failure {
+                echo 'Update Failure'
+            }
+            success {
+                echo 'Update Success'
+            }
+      }
+    }
+    }
+  }
+}
