@@ -171,7 +171,7 @@ export const postEdit = async (req, res) => {
       errorMessage: "User is exist",
     });
   }
-  const isHeroku = process.env.NODE_ENV === "production";
+  const isHeroku = process.env.NODE_ENV === "development";
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
@@ -184,7 +184,7 @@ export const postEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = updatedUser;
-  return res.redirect("/users/edit");
+  return res.redirect("/");
 };
 
 export const getChangePassword = (req, res) => {

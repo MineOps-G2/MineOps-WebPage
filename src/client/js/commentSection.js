@@ -53,7 +53,7 @@ const handleSubmit = async (event) => {
   if (text === "") {
     return;
   }
-  const response = await fetch(`/api/videos/${videoId}/comment`, {
+  const response = await fetch(`/api/posts/${videoId}/comment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -74,7 +74,7 @@ if (form) {
 const handleClick = async (e) => {
   const parentComment = e.target.parentElement.parentElement.parentElement;
   const commentId = parentComment.dataset.id;
-  const response = await fetch(`/api/videos/${commentId}/comment`, {
+  const response = await fetch(`/api/posts/${commentId}/comment`, {
     method: "delete",
   });
   if (response.status === 200) {
