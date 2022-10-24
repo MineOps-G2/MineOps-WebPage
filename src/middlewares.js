@@ -8,7 +8,8 @@ const s3 = new aws.S3({
   secretAccessKey: process.env.AWS_SECRET,
 });
 
-const isHeroku = process.env.NODE_ENV === "production";
+// const isHeroku = process.env.NODE_ENV === "production";
+const isHeroku = process.env.NODE_ENV === "development";
 
 const s3ImageUploader = multerS3({
   s3: s3,
