@@ -77,7 +77,7 @@ spec:
               slackSend (
                         channel: SLACK_CHANNEL,
                         color: SLACK_FAIL_COLOR,
-                        message: "이미지 Build 및 이미지 Push (ECR) 실패\n=================================================================="
+                        message: "이미지 Build 및 이미지 Push (ECR) 실패"
                  )
                 echo 'Build and Push Failure'
                 echo '${currentBuild.result}'
@@ -86,7 +86,7 @@ spec:
               slackSend (
                     channel: SLACK_CHANNEL,
                     color: SLACK_SUCCESS_COLOR,
-                    message: "이미지 Build 및 이미지 Push (ECR) 성공\n=================================================================="
+                    message: "이미지 Build 및 이미지 Push (ECR) 성공"
               )
                 echo 'Build and Push Success'
                 echo '${currentBuild.result}'
@@ -117,7 +117,7 @@ spec:
               slackSend (
                     channel: SLACK_CHANNEL,
                     color: SLACK_FAIL_COLOR,
-                    message: "이미지 태그 (Deployment.yaml) 업데이트 실패"
+                    message: "이미지 태그 (Deployment.yaml) 업데이트 실패\n=================================================================="
               )
                 echo 'Update Failure'
             }
@@ -125,7 +125,7 @@ spec:
               slackSend (
                     channel: SLACK_CHANNEL,
                     color: SLACK_SUCCESS_COLOR,
-                    message: "이미지 태그 (Deployment.yaml) 업데이트 성공"
+                    message: "이미지 태그 (Deployment.yaml) 업데이트 성공\n=================================================================="
               )
                 echo 'Update Success'
             }
