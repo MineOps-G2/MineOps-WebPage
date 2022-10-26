@@ -96,15 +96,15 @@ spec:
     stage('Update Manifestfile (deployment.yaml)') {
       steps {
         git credentialsId: 'github',
-                url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
+                url: 'https://github.com/MineOps-G2/MineOps-CICD.git',
                 branch: 'main'
         sh "git config --global user.email 'jenkins@jenkins.com'"
         sh "git config --global user.name 'jenkins'"
-        sh "sed -i 's/web:.*\$/web:${currentBuild.number}/g' ./cicd/ArgoCD/deployment.yaml"
-        sh "git add ./cicd/ArgoCD/deployment.yaml"
+        sh "sed -i 's/web:.*\$/web:${currentBuild.number}/g' ./web/deployment.yaml"
+        sh "git add ./web/deployment.yaml"
         sh "git commit -m 'Update version of web:${currentBuild.number} image'"
         sshagent(credentials: ['bc961ae0-bb48-4b0c-b1ab-40b360478498']) {
-                sh "git remote set-url origin git@github.com:MineOps-G2/MineOps-WebPage.git"
+                sh "git remote set-url origin git@github.com:MineOps-G2/MineOps-CICD.git"
                 sh "git push -u origin main"
         }
         // sh "git remote add origin https://github.com/MineOps-G2/MineOps-WebPage.git"
