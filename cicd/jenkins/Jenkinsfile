@@ -1,5 +1,3 @@
-// def buildNumber = currentBuild
-//test
 pipeline {
   agent {
     kubernetes {
@@ -10,10 +8,15 @@ metatdata:
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
+    image: rohithkakarla/kaniko-alpine:amd64
     env:
     - name: DEST
       value: "087600766519.dkr.ecr.ap-northeast-2.amazonaws.com/web:${currentBuild.number}"
+    - name: ENV
+      valueFrom:
+        secretKeyRef:
+          name: webenv
+          key: .env  
     imagePullPolicy: Always
     command:
     - /busybox/cat
@@ -35,9 +38,14 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
+            git clone https://github.com/MineOps-G2/MineOps-WebPage.git
+            ls ./MineOps-WebPage
+            echo "$ENV" > ./MineOps-WebPage/.env
+            ls ./MineOps-WebPage/src
+            cat ./MineOps-WebPage/.env
             /kaniko/executor \\
             --git branch=main \\
-            --context=git://github.com/MineOps-G2/MineOps-WebPage.git \\
+            --context=dir://./MineOps-WebPage \\
             --destination="${DEST}"
           '''
         }
