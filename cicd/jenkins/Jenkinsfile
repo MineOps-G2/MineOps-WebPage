@@ -72,7 +72,7 @@ spec:
         sshagent(credentials: ['bc961ae0-bb48-4b0c-b1ab-40b360478498']) {
                 sh "git remote set-url origin git@github.com:MineOps-G2/MineOps-WebPage.git"
                 sh "git push -u origin main"
-        // }
+        }
         // sh "git remote add origin https://github.com/MineOps-G2/MineOps-WebPage.git"
         // sh "git push -u origin main"
         // sh "git remote -v"
