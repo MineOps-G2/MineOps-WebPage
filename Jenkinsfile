@@ -116,7 +116,7 @@ spec:
             failure {
               slackSend (
                     channel: SLACK_CHANNEL,
-                    color: SLACK_SUCCESS_COLOR,
+                    color: SLACK_FAIL_COLOR,
                     message: "이미지 태그 (Deployment.yaml) 업데이트 실패"
               )
                 echo 'Update Failure'
