@@ -103,3 +103,12 @@
 // init();
 
 // actionBtn.addEventListener("click", handleStart);
+
+const textarea = document.querySelector(".upload__container-description");
+
+function resize(obj) {
+  obj.style.height = 12 + obj.scrollHeight * 1.5 + "px";
+}
+
+textarea.addEventListener("onkeyup", resize(textarea));
+textarea.addEventListener("onkeydown", resize(textarea));
