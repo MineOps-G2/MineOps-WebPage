@@ -2,6 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: cicd
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: cicd
+    notifications.argoproj.io/subscribe.on-sync-running.slack: cicd
+    notifications.argoproj.io/subscribe.on-sync-status-unknown.slack: cicd
+    notifications.argoproj.io/subscribe.on-deployed.slack: cicd
+    notifications.argoproj.io/subscribe.on-health-degraded.slack: cicd
 spec:
   selector:
     matchLabels:
