@@ -11,9 +11,10 @@ const addComment = (text, id, name, avatarUrl) => {
   const icon = document.createElement("div");
   icon.className = "video__comment-icon";
   if (!avatarUrl) {
-    const imoti = document.createElement("span");
-    imoti.className = "smaller__imoticon";
-    imoti.innerText = "😀";
+    const imoti = document.createElement("img");
+    imoti.className = "smaller__avatar";
+    imoti.src =
+      "https://user-images.githubusercontent.com/77392219/195795944-32e7969d-4142-4a9e-865b-d2ef2d3784c4.jpg";
     icon.appendChild(imoti);
   } else {
     const image = document.createElement("img");
