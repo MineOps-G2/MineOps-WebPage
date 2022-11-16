@@ -2,6 +2,9 @@
   "name": "mineops",
   "version": "1.0.0",
   "description": "mineops notice board webpage",
+  "engines": {
+    "node": "16.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MineOps-G2/minecraft-server.git"
