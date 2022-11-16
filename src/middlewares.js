@@ -13,13 +13,13 @@ const isHeroku = process.env.NODE_ENV === "development";
 
 const s3ImageUploader = multerS3({
   s3: s3,
-  bucket: "mineops-web-bucket/images",
+  bucket: "mineops-web-bucket2/images",
   acl: "public-read",
 });
 
 const s3PostUploader = multerS3({
   s3: s3,
-  bucket: "mineops-web-bucket/posts",
+  bucket: "mineops-web-bucket2/posts",
   acl: "public-read",
 });
 
