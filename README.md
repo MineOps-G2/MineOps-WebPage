@@ -1,6 +1,6 @@
 # MineOps Notice Board & Community
 
-### 실제 주소: http://community.mineops.link
+### 주소: http://community.mineops.link
 
 ### notion : https://funny-gourd-490.notion.site/mineops-web-community-page-cf22689552864282b96b7e2fa425a186
 
