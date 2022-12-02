@@ -5,7 +5,6 @@ pipeline {
   }
 
   stages {
-
     stage('Checkout Application Git Branch') {
         steps {
             git url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
