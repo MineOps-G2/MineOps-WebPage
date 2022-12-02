@@ -20,7 +20,6 @@ spec:
 """
     }
   }
-  }
   tools {
     maven 'Maven_HOME'
   }
