@@ -8,9 +8,8 @@ pipeline {
 
     stage('Checkout Application Git Branch') {
         steps {
-            git credentialsId: '{Credential ID}',
-                url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
-                branch: 'develop'
+            git url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
+                branch: 'main'
         }
         post {
                 failure {
