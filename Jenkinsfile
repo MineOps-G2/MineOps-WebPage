@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Docker Image Build') {
         steps {
-            pwd
+            sh 'pwd'
             sh 'echo ${ENV} > .env'
             sh "docker build . -t chogudwns"
         }
