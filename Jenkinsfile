@@ -21,9 +21,8 @@ pipeline {
     }
     stage('Docker Image Build') {
         steps {
-            sh "cp Dockerfile ./"
             sh 'echo ${ENV} > ./MineOps-WebPage/.env'
-            sh "docker build . -t chogudwns:latest"
+            sh "docker build . -t chogudwns"
         }
         post {
                 failure {
