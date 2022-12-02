@@ -21,8 +21,8 @@ pipeline {
     }
     stage('Docker Image Build') {
         steps {
-            sh "mkdir ./MineOps-WebPage/.env"
-            sh 'echo ${ENV} > ./MineOps-WebPage/.env'
+            pwd
+            sh 'echo ${ENV} > .env'
             sh "docker build . -t chogudwns"
         }
         post {
