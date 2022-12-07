@@ -1,26 +1,5 @@
 pipeline {
-  agent {
-    kubernetes {
-      yaml """
-kind: Pod
-metatdata:
-  namespace: jenkins
-spec:
-  containers:
-  - name: app
-    image: chogudwns/mineops:latest
-    env:
-    - name: ENV
-      valueFrom:
-        secretKeyRef:
-          name: webenv
-          key: .env  
-    imagePullPolicy: Always
-    tty: true
-"""
-    }
-  }
-  
+  agent any
   tools {
     maven 'Maven_HOME'
   }
