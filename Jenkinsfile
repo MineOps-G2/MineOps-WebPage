@@ -8,7 +8,7 @@ metatdata:
 spec:
   containers:
   - name: app
-    image: chogudwns/latest
+    image: chogudwns/mineops:latest
     env:
     - name: ENV
       valueFrom:
