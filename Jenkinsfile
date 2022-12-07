@@ -26,6 +26,7 @@ spec:
   }
 
   stages {
+    
     stage('Checkout Application Git Branch') {
         steps {
             git url: 'https://github.com/MineOps-G2/MineOps-WebPage.git',
@@ -40,6 +41,7 @@ spec:
                 }
         }
     }
+    
     stage('Docker Image Build') {
         steps {
             sh 'pwd'
