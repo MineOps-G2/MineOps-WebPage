@@ -25,9 +25,8 @@ pipeline {
         steps {
             sh 'pwd'
             sh 'echo ${ENV} > .env'
-            sh "docker pull chogudwns/mineops:latest"
-            sh "docker build . -t chogudwns/mineops:latest"
-            sh "docker run -d -p 9091:9091 -t chogudwns/mineops"
+            sh 'ls'
+            sh "docker build . -t chogudwns/mineops:{currentBuild.number}"
         }
         post {
                 failure {
