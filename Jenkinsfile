@@ -24,9 +24,9 @@ pipeline {
     stage('Docker Image Build') {
         steps {
             sh 'pwd'
-            sh 'echo ${ENV} > .env'
+            sh 'echo ${ENV} > ./.env'
             sh 'ls'
-            sh "docker build . -t chogudwns/mineops:{currentBuild.number}"
+            sh "docker build . -t chogudwns/mineops:${currentBuild.number}"
         }
         post {
                 failure {
