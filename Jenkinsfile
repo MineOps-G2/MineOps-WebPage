@@ -25,7 +25,7 @@ pipeline {
         steps {
             sh 'pwd'
             sh 'echo ${ENV} > ./.env'
-            sh 'ls'
+            sh 'ls -al'
             sh "docker build . -t chogudwns/mineops:${currentBuild.number}"
         }
         post {
