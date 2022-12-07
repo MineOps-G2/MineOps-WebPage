@@ -3,6 +3,10 @@ pipeline {
   tools {
     maven 'Maven_HOME'
   }
+  environment{
+    dockerHubRegistry = 'chogudwns/mineops'
+    dockerHubRegistryCredential = '615cd191-faec-4277-93ca-04cbaec4a556'
+  }
 
   stages {
     
@@ -26,7 +30,7 @@ pipeline {
             sh 'pwd'
             sh 'echo ${ENV} > ./.env'
             sh 'ls -al'
-            sh "docker build . -t chogudwns/mineops:${currentBuild.number}"
+            sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
         }
         post {
                 failure {
@@ -34,6 +38,29 @@ pipeline {
                 }
                 success {
                   echo 'Docker image build success !'
+                }
+        }
+    }
+    
+    stage('Docker Image Push') {
+        steps {
+          withDockerRegistry([ credentialsId: ${dockerHubRegistryCredential}, url: "" ]) {
+                                sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
+                                sh "docker push ${dockerHubRegistry}:latest"
+
+                                sleep 10 /* Wait uploading */ 
+                            }
+        }
+        post {
+                failure {
+                  echo 'Docker Image Push failure !'
+                  sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
+                  sh "docker rmi ${dockerHubRegistry}:latest"
+                }
+                success {
+                  echo 'Docker image push success !'
+                  sh "docker rmi ${dockerHubRegistry}:${currentBuild.number}"
+                  sh "docker rmi ${dockerHubRegistry}:latest"
                 }
         }
     }
