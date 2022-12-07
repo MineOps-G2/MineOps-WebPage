@@ -31,6 +31,7 @@ pipeline {
             sh 'echo ${ENV} > ./.env'
             sh 'ls -al'
             sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
+            sh "docker build . -t ${dockerHubRegistry}:latest
         }
         post {
                 failure {
