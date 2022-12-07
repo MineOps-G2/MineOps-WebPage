@@ -24,8 +24,9 @@ pipeline {
     stage('Docker Image Build') {
         steps {
             sh 'pwd'
+            sh 'sudo chmod 666 /var/run/docker.sock'
             sh 'echo ${ENV} > .env'
-            sh "docker build . -t chogudwns"
+            sh "docker build . -t chogudwns/mineops:latest"
         }
         post {
                 failure {
