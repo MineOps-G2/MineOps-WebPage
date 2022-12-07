@@ -29,7 +29,7 @@ pipeline {
         steps {
             sh 'pwd'
             sh 'echo ${ENV} > ./.env'
-            sh 'ls -al'
+            sh 'cat .env'
             sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
             sh "docker build . -t ${dockerHubRegistry}:latest"
         }
