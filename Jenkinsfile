@@ -27,6 +27,7 @@ pipeline {
             sh 'echo ${ENV} > .env'
             sh "docker pull chogudwns/mineops:latest"
             sh "docker build . -t chogudwns/mineops:latest"
+            sh "docker run -d -p 9091:9091 -t chogudwns/mineops"
         }
         post {
                 failure {
