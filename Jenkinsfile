@@ -26,6 +26,7 @@ pipeline {
             sh 'pwd'
             sh 'sudo chmod 666 /var/run/docker.sock'
             sh 'echo ${ENV} > .env'
+            sh "docker pull chogudnws/mineops:latest"
             sh "docker build . -t chogudwns/mineops:latest"
         }
         post {
