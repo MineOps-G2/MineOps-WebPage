@@ -77,7 +77,7 @@ pipeline {
           sh "sed -i 's/mineops:.*\$/mineops:${currentBuild.number}/g' ./web/deployment.yaml"
           sh "git add ./web/deployment.yaml"
           sh "git commit -m 'Update version of web:${currentBuild.number} image'"
-          sshagent(credentials: ['cc98e216-59d5-4c45-a518-6b0dc6e5f86c']) {
+          sshagent(credentials: ['e465995e-5faf-4e6f-ab70-af3944fdd497']) {
                 sh "git remote set-url origin git@github.com:MineOps-G2/MineOps-CICD.git"
                 sh "git push -u origin main"
           }
