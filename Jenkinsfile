@@ -68,5 +68,26 @@ pipeline {
                 }
         }
     }
+    stage('Manirest Update') {
+      steps {
+        git url: 'https://github.com/MineOps-G2/MineOps-CICD.git',
+            branch: 'main'
+        sh "sed -i 's/mineops-web:.*\$/mineops-web:${currentBuild.number}/g' ./web/deployment.yaml"
+        sh "git add ./web/deployment.yaml"
+        sh "git commit -m 'Update version of web:${currentBuild.number} image'"
+        sshagent(credentials: ['bc961ae0-bb48-4b0c-b1ab-40b360478498']) {
+                sh "git remote set-url origin git@github.com:MineOps-G2/MineOps-CICD.git"
+                sh "git push -u origin main"
+        }
+      }
+      post {
+                failure {
+                  echo 'K8S Manifest Update failure !'
+                }
+                success {
+                  echo 'K8S Manifest Update success !'
+                }
+      }
+    }
   }
 }
