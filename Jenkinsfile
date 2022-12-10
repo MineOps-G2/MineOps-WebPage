@@ -72,6 +72,8 @@ pipeline {
         steps {
           git url: 'https://github.com/MineOps-G2/MineOps-CICD.git',
               branch: 'main'
+          sh "git config --global user.email 'jenkins@jenkins.com'"
+          sh "git config --global user.name 'jenkins'"
           sh "sed -i 's/mineops:.*\$/mineops:${currentBuild.number}/g' ./web/deployment.yaml"
           sh "git add ./web/deployment.yaml"
           sh "git commit -m 'Update version of web:${currentBuild.number} image'"
