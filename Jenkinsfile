@@ -72,7 +72,7 @@ pipeline {
       steps {
         git url: 'https://github.com/MineOps-G2/MineOps-CICD.git',
             branch: 'main'
-        sh "sed -i 's/mineops-web:.*\$/mineops-web:${currentBuild.number}/g' ./web/deployment.yaml"
+        sh "sed -i 's/mineops:.*\$/mineops:${currentBuild.number}/g' ./web/deployment.yaml"
         sh "git add ./web/deployment.yaml"
         sh "git commit -m 'Update version of web:${currentBuild.number} image'"
         sshagent(credentials: ['bc961ae0-bb48-4b0c-b1ab-40b360478498']) {
