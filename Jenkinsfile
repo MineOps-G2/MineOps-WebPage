@@ -29,10 +29,10 @@ pipeline {
         steps {
             sh 'pwd'
             sh 'echo ${ENV1} > ./.env'
-          sh 'echo ${ENV2} >> ./.env'
-          sh 'echo ${ENV3} >> ./.env'
-          sh 'echo ${ENV4} >> ./.env'
-          sh 'echo ${ENV5} >> ./.env'
+            sh 'echo ${ENV2} >> ./.env'
+            sh 'echo ${ENV3} >> ./.env'
+            sh 'echo ${ENV4} >> ./.env'
+            sh 'echo ${ENV5} >> ./.env'
             sh "docker build . -t ${dockerHubRegistry}:${currentBuild.number}"
             sh "docker build . -t ${dockerHubRegistry}:latest"
         }
